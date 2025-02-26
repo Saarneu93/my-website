@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voting Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Load Chart.js and candidates data before our main script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="candidates_data.js"></script>
+</head>
+<body>
+  <div class="container mt-4">
+    <!-- Header Placeholder -->
+    <div id="header-container"></div>
+
+    <!-- Login Section -->
+    <div id="login-area" class="section-container mt-4">
+        <h2 class="mb-3">Login</h2>
+        <div id="login-form">
+        <div class="input-group">
+            <input type="text" id="username" class="form-control" placeholder="Enter username" required>
+            <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+        </div>
+        </div>
+        <div id="logged-in-info" style="display:none;">
+        <p id="logged-user"></p>
+        <button type="button" class="btn btn-secondary" onclick="logout()">Log Out</button>
+        </div>
+    </div>
+  
+    <!-- Candidates Info Section -->
+
+
+    <!-- Top Candidates Chart Section -->
+    <div id="top-candidates-chart-section" class="section-container mt-4">
+      <h2 class="mb-3">Top Candidates Chart</h2>
+      <canvas id="top-candidates-chart"></canvas>
+    </div>
+
+    <!-- Voting Section -->
+    <div id="voting" class="section-container mt-4">
+        <h2 class="mb-3">Vote</h2>
+        <div id="voting-message" class="alert alert-warning" role="alert" style="display: none;">
+        You need to log in to vote.
+        </div>
+        <div id="candidate-list" class="vote-container" style="display: none;">
+        <!-- Radio buttons for candidates will be added here dynamically -->
+        </div>
+        <button type="button" id="vote-button" class="btn btn-primary mt-3" onclick="submitVote()" style="display: none;">
+        Submit Vote
+        </button>
+    </div>
+  
+  
+  
+
+
+
+    <!-- Candidate Votes List Section -->
+    <div id="candidate-votes-list" class="section-container mt-4">
+      <h2 class="mb-3">Candidates by Votes</h2>
+      <div id="candidate-votes-list-container"></div>
+    </div>
+
+    <div id="candidates" class="section-container mt-4">
+        <h2 class="mb-3">Candidates Info</h2>
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-primary mt-3"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Add Candidate
+        </button>
+      
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Candidate Sign Up
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form id="addUserForm" class="mb-4">
+                  <div class="mb-3">
+                    <label for="userName" class="form-label">Name</label>
+                    <input
+                      type="text"
+                      id="userName"
+                      class="form-control"
+                      placeholder="Enter name"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="userDesc" class="form-label">Description</label>
+                    <textarea
+                      id="userDesc"
+                      class="form-control"
+                      placeholder="Enter description"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Candidate</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Tab List & Content -->
+        <div class="row">
+          <div class="col-4">
+            <div class="list-group" id="list-tab" role="tablist">
+              <!-- Tabs will be added dynamically -->
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+              <!-- Content panes will be added dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <!-- Vote Logs Section -->
+    <div id="vote-logs" class="section-container mt-4">
+        <h2 class="mb-3">Vote Logs</h2>
+        <div id="log-list"></div>
+        <!-- Export button styled like modal buttons -->
+        <button class="btn btn-primary" onclick="exportLogsToText()">Export Logs</button>
+        </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-container" class="mt-4"></div>
+  </div>
+
+  <!-- Bootstrap JS Bundle (Includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Load your custom scripts (which now initialize data and functionality) -->
+  <script src="scripts.js"></script>
+</body>
+</html>
