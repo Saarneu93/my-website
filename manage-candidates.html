@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-DmMKSztvH4G77AV3aMTvKcAAqq/Nw4YAJ6RZR2IbtG4lZuH6E5C3A9FOEvYGNnGZ" crossorigin="anonymous">
+
+<div class="container mt-4">
+    <h2>Manage Candidates</h2>
+    <div class="modal fade" id="addCandidateModal" tabindex="-1" aria-labelledby="addCandidateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCandidateModalLabel">Add New Candidate</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCandidateForm">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Candidate</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-2 d-flex align-items-center">
+        <label for="rowLimit" class="form-label me-2">Rows per Page:</label>
+        <select id="rowLimit" class="form-select" style="width: auto;">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20" selected>20</option>
+        </select>
+    </div>
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead style="background-color: #6a737d; color: white;">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th> </tr>
+                </thead>
+                <tbody id="candidates-body">
+                </tbody>
+            </table>
+        </div>
+
+        <nav class="pagination-nav">
+            <ul class="pagination" id="pagination">
+            </ul>
+        </nav>
+    </div>
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addCandidateModal">
+        Add Candidate
+    </button>
+</div>

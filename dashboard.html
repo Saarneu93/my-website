@@ -1,0 +1,90 @@
+<div class="container mt-4">
+  <h2>Dashboard</h2>
+
+  <div class="row">
+      <div class="col-md-3">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Vote Logs</h5>
+                  <p class="card-text"><span id="log-count">0</span> Logs</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Candidates</h5>
+                  <p class="card-text"><span id="candidate-count">0</span> Candidates</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Online Members</h5>
+                  <p class="card-text"><span id="online-count">0</span> Members</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">General Info</h5>
+                  <p class="card-text">Welcome to the Admin Panel.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="mt-4">
+      <h3>Recent Vote Logs</h3>
+      <div class="table-container">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead style="background-color: #6a737d; color: white;">
+                      <tr>
+                          <th>Log Details</th>
+                      </tr>
+                  </thead>
+                  <tbody id="recent-logs">
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const logCountSpan = document.getElementById("log-count");
+      const candidateCountSpan = document.getElementById("candidate-count");
+      const onlineCountSpan = document.getElementById("online-count");
+      const recentLogsList = document.getElementById("recent-logs");
+
+      // Mock data for counts (replace with actual logic)
+      const voteLogs = [
+              "3/1/2025, 3:41:25 PM: saar voted for Noah Lewis",
+              "3/1/2025, 10:57:45 AM: saar voted for Charlie Davis",
+              "2/25/2025, 10:01:25 PM: Saar voted for Liam Lee",
+              "2/25/2025, 10:01:21 PM: Saar voted for Charlie Davis",
+              "2/25/2025, 9:50:23 PM: saar voted for Alice Johnson",
+              "2/25/2025, 9:47:16 PM: saar voted for David Rodriguez",
+              "2/25/2025, 9:36:03 PM: saar voted for Noah Lewis",
+              "2/25/2025, 9:36:00 PM: saar voted for Alice Johnson"
+          ];
+      const candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+      const onlineMembers = 5; // Replace with actual online member count
+
+      // Update counts
+      logCountSpan.textContent = voteLogs.length;
+      candidateCountSpan.textContent = candidates.length;
+      onlineCountSpan.textContent = onlineMembers;
+
+      // Display recent logs
+      voteLogs.slice(0, 5).forEach(log => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${log}</td>`;
+          recentLogsList.appendChild(row);
+      });
+  });
+</script>
