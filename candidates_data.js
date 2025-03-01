@@ -14,5 +14,5 @@ const initialCandidates = [
     { name: "Liam Lee", email: "liam.l@example.com", phone: "5552829303", votes: 0 },
     { name: "Mia Clark", email: "mia.c@example.com", phone: "5553132333", votes: 0 },
     { name: "Noah Lewis", email: "noah.l@example.com", phone: "5553435363", votes: 0 },
-    { name: "Olivia Robinson", email: "olivia.r@example.com", phone: "5553738393", votes: 0 }
+    { name: "Olivia Robinson", email: "olivia.r@example.com", phone: "5553738393", votes: 0 }, 
 ];

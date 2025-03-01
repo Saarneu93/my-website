@@ -79,7 +79,7 @@ function displayTopCandidatesChart() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const addUserForm = document.getElementById('addUserForm');
     const userNameInput = document.getElementById('userName');
     const userDescInput = document.getElementById('userDesc');
@@ -87,69 +87,84 @@ document.addEventListener('DOMContentLoaded', function() {
     const navTabContent = document.getElementById('nav-tabContent');
   
     let tabCount = 1; // Counter for unique IDs
-  
-    if(addUserForm){
-      addUserForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-      
-          const name = userNameInput.value.trim();
-          const desc = userDescInput.value.trim();
-          if (!name || !desc) return;
-      
-          const tabId = `list-user-${tabCount}`;
-          const tabPaneId = `tab-pane-${tabCount}`;
-          tabCount++;
-      
-          const newTab = document.createElement('a');
-          newTab.className = 'list-group-item list-group-item-action';
-          newTab.id = `${tabId}-list`;
-          newTab.setAttribute('data-bs-toggle', 'list');
-          newTab.href = `#${tabPaneId}`;
-          newTab.setAttribute('role', 'tab');
-          newTab.setAttribute('aria-controls', tabPaneId);
-          newTab.textContent = name;
-      
-          const newPane = document.createElement('div');
-          newPane.className = 'tab-pane fade';
-          newPane.id = tabPaneId;
-          newPane.setAttribute('role', 'tabpanel');
-          newPane.setAttribute('aria-labelledby', `${tabId}-list`);
-          newPane.innerHTML = `<p>${desc}</p>`;
-      
-          listTab.appendChild(newTab);
-          navTabContent.appendChild(newPane);
-      
-          addUserForm.reset();
-      
-          document.querySelectorAll('#list-tab .active').forEach(item => item.classList.remove('active'));
-          document.querySelectorAll('#nav-tabContent .active').forEach(item => item.classList.remove('active', 'show'));
-      
-          newTab.classList.add('active');
-          newPane.classList.add('active', 'show');
-      });
+
+    if (addUserForm) {
+        addUserForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const name = userNameInput.value.trim();
+            const desc = userDescInput.value.trim();
+            if (!name || !desc) return;
+
+            // Create unique tab and content panel IDs
+            const tabId = `list-user-${tabCount}`;
+            const tabPaneId = `tab-pane-${tabCount}`;
+            tabCount++;
+
+            // Create new tab button
+            const newTab = document.createElement('a');
+            newTab.className = 'list-group-item list-group-item-action';
+            newTab.id = `${tabId}-list`;
+            newTab.setAttribute('data-bs-toggle', 'list');
+            newTab.href = `#${tabPaneId}`;
+            newTab.setAttribute('role', 'tab');
+            newTab.setAttribute('aria-controls', tabPaneId);
+            newTab.textContent = name;
+
+            // Create new tab content pane
+            const newPane = document.createElement('div');
+            newPane.className = 'tab-pane fade';
+            newPane.id = tabPaneId;
+            newPane.setAttribute('role', 'tabpanel');
+            newPane.setAttribute('aria-labelledby', `${tabId}-list`);
+            newPane.innerHTML = `<p>${desc}</p>`;
+
+            // Append new tab and content pane
+            listTab.appendChild(newTab);
+            navTabContent.appendChild(newPane);
+
+            // Reset form after submission
+            addUserForm.reset();
+
+            // Remove active classes from previous selections
+            document.querySelectorAll('#list-tab .active').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('#nav-tabContent .active').forEach(item => item.classList.remove('active', 'show'));
+
+            // Activate new tab and content pane
+            newTab.classList.add('active');
+            newPane.classList.add('active', 'show');
+        });
     }
 
-  // Check if user is logged in and update voting section display
-  if (loggedInUser) {
-    document.getElementById('voting-message').style.display = 'none';
-    document.getElementById('candidate-list').style.display = 'block';
-    document.getElementById('vote-button').style.display = 'block';
-  } else {
-    document.getElementById('voting-message').style.display = 'block';
-    document.getElementById('candidate-list').style.display = 'none';
-    document.getElementById('vote-button').style.display = 'none';
-  }
+    // Ensure elements exist before trying to update their display
+    const votingMessage = document.getElementById('voting-message');
+    const candidateList = document.getElementById('candidate-list');
+    const voteButton = document.getElementById('vote-button');
 
-  updateLoginDisplay();
-  updateVotingUI();  // Set voting UI based on login status
+    if (votingMessage && candidateList && voteButton) {
+        if (loggedInUser) {
+            votingMessage.style.display = 'none';
+            candidateList.style.display = 'block';
+            voteButton.style.display = 'block';
+        } else {
+            votingMessage.style.display = 'block';
+            candidateList.style.display = 'none';
+            voteButton.style.display = 'none';
+        }
+    }
 
-  // Call other functions
-  displayCandidates();
-  displayVoteLogs();
-  displayCandidateVotesList();
-  displayTopCandidatesChart();
-  displayAnalytics(); // if defined
+    // Ensure UI updates properly
+    updateLoginDisplay();
+    updateVotingUI();
+
+    // Call other functions (ensure they are defined before calling)
+    if (typeof displayCandidates === "function") displayCandidates();
+    if (typeof displayVoteLogs === "function") displayVoteLogs();
+    if (typeof displayCandidateVotesList === "function") displayCandidateVotesList();
+    if (typeof displayTopCandidatesChart === "function") displayTopCandidatesChart();
+    if (typeof displayAnalytics === "function") displayAnalytics();
 });
+
   
 function submitVote() {
     if (!loggedInUser) {
@@ -248,12 +263,12 @@ function displayCandidates() {
   function login() {
     const usernameInput = document.getElementById('username');
     const username = usernameInput.value.trim();
+    
     if (username) {
-      loggedInUser = username;
-      localStorage.setItem('loggedInUser', username);
+      localStorage.setItem("loggedInUser", username); // Save user
       updateLoginDisplay();
-      updateVotingUI(); // update voting section immediately
       alert("Logged in as " + username);
+      location.reload(); // Force refresh to update navbar
     } else {
       alert("Please enter a username.");
     }
@@ -302,3 +317,33 @@ function updateVotingUI() {
     }
   }
   
+  // Smooth scrolling for navbar links
+document.querySelectorAll('a.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1); // remove the '#' from the href
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 20, // adjust offset if needed
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  window.updateCandidatesFromAdmin = function(updatedCandidates) {
+    // Update the candidates array in index.html
+    candidates = updatedCandidates;
+
+    // Update the candidate display on the main page
+    if (typeof displayCandidates === "function") {
+        displayCandidates();
+    }
+    if (typeof displayCandidateVotesList === "function") {
+      displayCandidateVotesList();
+    }
+    if (typeof displayTopCandidatesChart === "function") {
+        displayTopCandidatesChart();
+    }
+};

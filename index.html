@@ -10,12 +10,13 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
   />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="assets/styles/style.css">
   <!-- Load Chart.js and candidates data before our main script -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="candidates_data.js"></script>
 </head>
 <body>
+    <div id="top"></div>
   <div class="container mt-4">
     <!-- Header Placeholder -->
     <div id="header-container"></div>
@@ -69,93 +70,7 @@
       <div id="candidate-votes-list-container"></div>
     </div>
 
-    <div id="candidates" class="section-container mt-4">
-        <h2 class="mb-3">Candidates Info</h2>
-        <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="btn btn-primary mt-3"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Add Candidate
-        </button>
       
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Candidate Sign Up
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form id="addUserForm" class="mb-4">
-                  <div class="mb-3">
-                    <label for="userName" class="form-label">Name</label>
-                    <input
-                      type="text"
-                      id="userName"
-                      class="form-control"
-                      placeholder="Enter name"
-                      required
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="userDesc" class="form-label">Description</label>
-                    <textarea
-                      id="userDesc"
-                      class="form-control"
-                      placeholder="Enter description"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Add Candidate</button>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Tab List & Content -->
-        <div class="row">
-          <div class="col-4">
-            <div class="list-group" id="list-tab" role="tablist">
-              <!-- Tabs will be added dynamically -->
-            </div>
-          </div>
-          <div class="col-8">
-            <div class="tab-content" id="nav-tabContent">
-              <!-- Content panes will be added dynamically -->
-            </div>
-          </div>
-        </div>
-      </div>
-      
-
     <!-- Vote Logs Section -->
     <div id="vote-logs" class="section-container mt-4">
         <h2 class="mb-3">Vote Logs</h2>
