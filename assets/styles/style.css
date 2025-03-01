@@ -1,0 +1,108 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #ffffff;
+  padding-top: 70px;
+
+}
+
+#header-container nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e1e4e8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#header-container .navbar {
+  padding: 1rem 0;
+}
+#header-container .navbar-brand {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #24292e;
+}
+#header-container .nav-link {
+  color: #586069;
+  margin-left: 1rem;
+}
+#header-container .nav-link.active,
+#header-container .nav-link:hover {
+  color: #24292e;
+}
+
+/* Section Headings */
+
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #24292e;
+}
+
+/* General Section Container */
+.section-container {
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem; /* Optional spacing between sections */
+}
+
+
+/* Form Controls */
+.form-label {
+  color: #586069;
+}
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #d1d5da;
+}
+.btn-primary {
+  background-color: #6a737d; /* medium grey */
+  border-color: #6a737d;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #5a636c; /* slightly darker grey */
+  border-color: #545b62;
+}
+
+
+/* Modal Styles - keeping Bootstrap defaults for minimalism */
+
+/* Footer Styles */
+#footer-container {
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #586069;
+  border-top: 1px solid #e1e4e8;
+  margin-top: 2rem;
+}
+
+
+/* Override Bootstrap list group styles in the Candidates Info section */
+#candidates .list-group-item {
+  color: #24292e;          /* Dark, neutral text */
+  background-color: #fff;   /* White background */
+  border: 1px solid #e1e4e8; /* Subtle border */
+}
+
+#candidates .list-group-item:hover,
+#candidates .list-group-item:focus {
+  background-color: #f6f8fa; /* Light gray hover effect */
+  color: #24292e;
+}
+
+#candidates .list-group-item.active {
+  background-color: #6a737d; /* A neutral active state instead of blue */
+  border-color: #d1d5da;
+  color: #ffffff;
+}

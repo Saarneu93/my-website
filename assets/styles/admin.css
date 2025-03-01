@@ -1,0 +1,100 @@
+/* Admin Panel Layout */
+#wrapper {
+  display: flex;
+}
+
+#sidebar-wrapper {
+  width: 250px;
+  min-height: 100vh;
+  transition: width 0.3s ease-in-out;
+  background-color: #6a737d; /* Matches the button color */
+}
+
+#page-content-wrapper {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Shrinking Sidebar */
+#wrapper.toggled #sidebar-wrapper {
+  width: 70px;
+}
+
+#wrapper.toggled .sidebar-title {
+  display: none;
+}
+
+#wrapper.toggled .list-group-item .nav-text {
+  display: none;
+}
+
+/* Sidebar Styling */
+.sidebar-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.list-group-item {
+  border: none;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.list-group-item i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.list-group-item:hover {
+  background-color: #495057;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.table-responsive {
+  flex-grow: 1;
+}
+
+.pagination-nav {
+  margin-top: 10px;
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #sidebar-wrapper {
+      width: 70px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+      width: 250px;
+  }
+}
+
+/* Match main website's pagination styles */
+.pagination .page-item.active .page-link {
+  background-color: #6a737d;
+  border-color: #6a737d;
+  color: white;
+}
+
+.pagination .page-link {
+  color: #6a737d;
+}
+
+/* Match main website's button styles */
+.btn-primary {
+  background-color: #6a737d;
+  border-color: #6a737d;
+}
+
+.btn-primary:hover {
+  background-color: #555c63; /* Slightly darker hover color */
+  border-color: #555c63;
+}
